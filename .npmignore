@@ -1,0 +1,42 @@
+# Source files (only ship compiled JS)
+src/
+*.ts
+!*.d.ts
+tsconfig.json
+
+# Development files
+.github/
+scripts/
+.vscode/
+.idea/
+*.log
+.DS_Store
+
+# Git files
+.git/
+.gitignore
+.gitattributes
+
+# Tests (if you add them later)
+test/
+tests/
+*.test.js
+*.spec.js
+
+# CI/CD
+.travis.yml
+.circleci/
+.gitlab-ci.yml
+
+# Documentation (keep README.md, exclude others)
+docs/
+CONTRIBUTING.md
+CHANGELOG.md
+
+# Node modules (already excluded by default, but explicit is better)
+node_modules/
+
+# Build artifacts that shouldn't be published
+*.tsbuildinfo
+coverage/
+.nyc_output/

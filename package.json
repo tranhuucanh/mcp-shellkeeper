@@ -1,0 +1,58 @@
+{
+  "name": "mcp-shellkeeper",
+  "version": "1.0.0",
+  "description": "MCP server for persistent terminal sessions with SSH support",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "mcp-shellkeeper": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/index.js",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "terminal",
+    "shell",
+    "ssh",
+    "persistent",
+    "pty",
+    "cursor",
+    "claude",
+    "mcp-shellkeeper",
+    "statefull-ssh-mcp"
+  ],
+  "author": {
+    "name": "Tran Huu Canh",
+    "email": "tranhuucanh39@gmail.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.5.0",
+    "node-pty": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tranhuucanh/mcp-shellkeeper.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tranhuucanh/mcp-shellkeeper/issues"
+  },
+  "homepage": "https://github.com/tranhuucanh/mcp-shellkeeper#readme",
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ]
+}

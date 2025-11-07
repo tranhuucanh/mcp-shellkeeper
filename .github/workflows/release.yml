@@ -1,0 +1,102 @@
+name: Release to NPM
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to release (e.g., 1.0.1)'
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Get version
+        id: version
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            VERSION="${{ github.event.inputs.version }}"
+            echo "version=$VERSION" >> $GITHUB_OUTPUT
+            echo "tag=v$VERSION" >> $GITHUB_OUTPUT
+          else
+            VERSION=${GITHUB_REF#refs/tags/v}
+            echo "version=$VERSION" >> $GITHUB_OUTPUT
+            echo "tag=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+          fi
+          echo "📦 Releasing version: $VERSION"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Verify build
+        run: |
+          echo "✅ Build artifacts:"
+          ls -lh dist/
+          echo ""
+          echo "📋 package.json version:"
+          node -p "require('./package.json').version"
+
+      - name: Publish to npm
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.version.outputs.tag }}
+          name: Release ${{ steps.version.outputs.tag }}
+          body: |
+            ## 🎉 MCP ShellKeeper ${{ steps.version.outputs.version }}
+
+            ### Installation
+            ```bash
+            npm install -g mcp-shellkeeper@${{ steps.version.outputs.version }}
+            ```
+
+            ### What's Changed
+            See [CHANGELOG](https://github.com/tranhuucanh/mcp-shellkeeper/blob/main/CHANGELOG.md) for details.
+
+            ### Links
+            - 📦 [npm package](https://www.npmjs.com/package/mcp-shellkeeper)
+            - 📖 [Documentation](https://github.com/tranhuucanh/mcp-shellkeeper#readme)
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Summary
+        run: |
+          VERSION=${{ steps.version.outputs.version }}
+          echo "=============================================="
+          echo "🎉 MCP ShellKeeper v$VERSION Released!"
+          echo "=============================================="
+          echo ""
+          echo "✅ Published to npm:"
+          echo "   📦 https://www.npmjs.com/package/mcp-shellkeeper"
+          echo ""
+          echo "✅ GitHub Release:"
+          echo "   🔗 https://github.com/tranhuucanh/mcp-shellkeeper/releases/tag/v$VERSION"
+          echo ""
+          echo "📥 Install with:"
+          echo "   npm install -g mcp-shellkeeper"
+          echo "=============================================="
+
