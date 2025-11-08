@@ -478,7 +478,7 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 *Stateful execution + File transfer = Limitless possibilities*
 
-[![Star History Chart](https://api.star-history.com/svg?repos=tranhuucanh/mcp-shellkeeper&type=Date)](https://star-history.com/#tranhuucanh/mcp-shellkeeper&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=tranhuucanh/mcp-shellkeeper&type=Date&t=89)](https://star-history.com/#tranhuucanh/mcp-shellkeeper&Date&t=89)
 
 [⬆ Back to top](#-mcp-shellkeeper)
 
