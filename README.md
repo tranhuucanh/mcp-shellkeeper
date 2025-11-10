@@ -10,6 +10,7 @@ SSH into servers, run commands, transfer files — all through your AI assistant
 [![Node Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen)](https://nodejs.org)
 [![MCP](https://img.shields.io/badge/MCP-Compatible-blue)](https://modelcontextprotocol.io)
 [![npm](https://img.shields.io/badge/npm-mcp--shellkeeper-green.svg)](https://www.npmjs.com/package/mcp-shellkeeper) [![npm downloads](https://img.shields.io/npm/dt/mcp-shellkeeper)](https://www.npmjs.com/package/mcp-shellkeeper)
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/tranhuucanh/mcp-shellkeeper)
 
 [Real-World Example](#-real-world-example) • [Installation](#-installation) • [Core Features](#-core-features) • [Use Cases](#-use-cases) • [Tools](#-available-tools)
 
